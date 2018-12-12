@@ -1,15 +1,16 @@
-.quasar
+/client/.quasar
 .DS_Store
 .thumbs.db
-node_modules
-/dist
-/src-cordova/node_modules
-/src-cordova/platforms
-/src-cordova/plugins
-/src-cordova/www
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+/firebase-server/functions/node_modules
+/client/node_modules
+/client/dist
+/client/src-cordova/node_modules
+/client/src-cordova/platforms
+/client/src-cordova/plugins
+/client/src-cordova/www
+/client/npm-debug.log*
+/client/yarn-debug.log*
+/client/yarn-error.log*
 
 # Editor directories and files
 .idea
