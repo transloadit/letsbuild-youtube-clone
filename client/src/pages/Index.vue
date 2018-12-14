@@ -1,18 +1,20 @@
 <template>
   <q-page class="flex">
-    <q-card inline style="width: 500px;" v-for="vid in vidoes" v-bind:key="vid.id">
-    <router-link :to="'/video/'+vid.id">
-      <q-card-media>
-        <img :src="vid.data.poster">
-      </q-card-media>
-      <q-card-title>{{vid.title}}</q-card-title>
-      <q-card-main>
-        <p>{{vid.data.license}}</p>
-        <p class="text-faded">{{vid.data.caption}}</p>
-      </q-card-main>
-      <q-card-separator/>
-      </router-link>
-    </q-card>
+    <div class="q-container">
+      <q-card v-for="vid in vidoes" v-bind:key="vid.id">
+      <router-link :to="'/video/'+vid.id">
+        <q-card-media>
+          <img :src="vid.data.poster">
+        </q-card-media>
+        <q-card-main>
+          <q-card-title>{{vid.title}}</q-card-title>
+          <p class="text-faded">License: {{vid.data.license}}</p>
+          <p class="text-faded">{{vid.data.caption}}</p>
+        </q-card-main>
+        <!-- <q-card-separator/> -->
+        </router-link>
+      </q-card>
+    </div>
     <h3 v-if="!vidoes.length">We have no videos in store currently. Please check later</h3>
   </q-page>
 </template>
@@ -49,7 +51,6 @@ export default {
 </script>
 <style>
 .inline-block {
-  padding: 3px !important;
+  /* padding: 3px !important; */
 }
 </style>
-
