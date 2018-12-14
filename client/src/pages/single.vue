@@ -1,14 +1,16 @@
 <template>
-    <q-page class="flex">
-        <video v-if="video.id" id="my-player" ref="my-player" class="video-js vjs-default-skin"
-        controls crossorigin playsinline
-        data-plyr-config='{ "title": "This is an example video", "volume": 1, "debug": true }'
-  :poster="video.data.poster">
+  <q-page>
+    <div style="margin: 30px auto; width: 700px;">
+      <video v-if="video.id" id="my-player" ref="my-player" class="video-js vjs-default-skin"
+      controls crossorigin playsinline
+      data-plyr-config='{ "title": "This is an example video", "volume": 1, "debug": true }'
+      :poster="video.data.poster">
         <source v-for="(src, index) in video.data.sources"  v-bind:key="index"
         :src="src.src" :type="src.type" :size="src.size">
-        </video>
-        <h3 v-if="!video.id">Cannot fetch video</h3>
-    </q-page>
+      </video>
+      <h3 v-if="!video.id">Cannot fetch video</h3>
+    </div>
+  </q-page>
 </template>
 
 <script>
@@ -64,4 +66,3 @@ export default {
     object-fit: fill;
 }
 </style>
-
