@@ -8,8 +8,8 @@
         </q-card-media>
         <q-card-main>
           <q-card-title>{{vid.title}}</q-card-title>
-          <p class="text-faded">License: {{vid.data.license}}</p>
           <p class="text-faded">{{vid.data.caption}}</p>
+          <p class="text-faded">License: {{vid.data.license}}</p>
         </q-card-main>
         <!-- <q-card-separator/> -->
         </router-link>
