@@ -2,7 +2,7 @@
   <q-page class="flex">
     <div class="q-container">
       <q-card v-for="vid in vidoes" v-bind:key="vid.id">
-      <router-link :to="'/video/'+vid.id">
+      <router-link :to="'/video/'+vid.id" class="video-link">
         <q-card-media>
           <img :src="vid.data.poster">
         </q-card-media>
