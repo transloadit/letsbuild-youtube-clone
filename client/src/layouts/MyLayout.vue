@@ -3,7 +3,6 @@
     <q-layout-header>
       <q-toolbar
         color="primary"
-        :glossy="$q.theme === 'mat'"
         :inverted="$q.theme === 'ios'"
       >
         <q-toolbar-title>
@@ -22,14 +21,14 @@
     </q-layout-header>
 
     <q-page-container>
-    <q-modal v-model="opened">
-    <div ref="select-files" id="select-files"></div>
-    <q-btn
-      color="primary"
-      @click="opened = false"
-      label="Close"
-    />
-  </q-modal>
+      <q-modal v-model="opened">
+        <q-btn
+          color="primary"
+          @click="opened = false"
+          label="Close"
+        />
+        <div ref="select-files" id="select-files"></div>
+      </q-modal>
       <router-view />
     </q-page-container>
   </q-layout>
