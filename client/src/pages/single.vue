@@ -4,6 +4,9 @@
         controls crossorigin playsinline
         data-plyr-config='{ "title": "This is an example video", "volume": 1, "debug": true }'
   :poster="video.data.poster">
+        <div class="comments">
+          <disqus shortname="your_shortname_disqus" url=""></disqus>
+        </div>
         <source v-for="(src, index) in video.data.sources"  v-bind:key="index"
         :src="src.src" :type="src.type" :size="src.size">
         </video>
