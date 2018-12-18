@@ -11,7 +11,7 @@
       <h3 v-if="!video.id">Cannot fetch video</h3>
     </div>
     <div class="comments">
-          <disqus shortname="your_shortname_disqus" url=""></disqus>
+          <vue-disqus shortname="youclone" url=""></vue-disqus>
     </div>
   </q-page>
 </template>
