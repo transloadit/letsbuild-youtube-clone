@@ -23,6 +23,14 @@ a {
   overflow: hidden;
 }
 
+.q-container:empty {
+  display: none;
+}
+
+.q-container h3 {
+  font-size: 25px;
+}
+
 .q-card {
   background-color: #fff;
   padding: 15px 15px 8px;
@@ -46,4 +54,39 @@ a {
 .q-card-title {
   font-size: 16px;
   font-weight: 500;
+}
+
+.q-toolbar-subtitle a {
+  // text-decoration: underline;
+  color: #fff;
+}
+
+.q-toolbar-subtitle a:hover {
+  text-decoration: underline;
+}
+
+// Uppy-specific styles
+
+.uppy-transloadit-youtube .uppy-Dashboard-note {
+  max-width: 430px !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  margin: auto !important;
+}
+
+.uppy-transloadit-youtube .uppy-size--md {
+  font-size: 14px;
+}
+
+.uppy-transloadit-youtube .uppy-Dashboard--modal .uppy-Dashboard-overlay {
+  background-color: rgba(0,0,0,0.75) !important;
+  z-index: 2005 !important;
+}
+
+.uppy-transloadit-youtube .uppy-Dashboard--modal .uppy-Dashboard-inner {
+  z-index: 2010 !important;
+}
+
+.uppy-Dashboard-isFixed .q-layout-header {
+  z-index: 1000;
 }

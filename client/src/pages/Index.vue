@@ -14,8 +14,8 @@
         <!-- <q-card-separator/> -->
         </router-link>
       </q-card>
+      <h3 v-if="!vidoes.length">We have no videos in store currently. Please check later 👌</h3>
     </div>
-    <h3 v-if="!vidoes.length">We have no videos in store currently. Please check later</h3>
   </q-page>
 </template>
 
@@ -29,7 +29,7 @@ export default {
   mounted: function mounted() {
     this.$q.loading.show({
       message: 'Loading available Videos',
-      messageColor: 'blue',
+      messageColor: 'black',
       spinnerColor: 'white',
     });
     axios.get(`${window.base_url}/api/videos`)

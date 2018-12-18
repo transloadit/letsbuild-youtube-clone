@@ -7,12 +7,15 @@
       >
         <q-toolbar-title>
         <router-link :to="'/'" style="color: white; text-decoration:none;">
-          Youtube Clone
+          2hr YouTube “Clone”
         </router-link>
-          <div slot="subtitle">Powered by Transloadit and Firebase</div>
+          <div slot="subtitle">Powered by
+            <a href="https://transloadit.com">Transloadit</a>,
+            <a href="https://uppy.io">Uppy</a> and Firebase
+            </div>
           <q-btn
             color="standard"
-            @click="opened = true"
+            @click="openUppyModal"
             label="Upload Videos"
             style="float:right;"
           />
@@ -40,8 +43,16 @@ import axios from 'axios';
 const Uppy = require('@uppy/core');
 const Transloadit = require('@uppy/transloadit');
 const Dashboard = require('@uppy/dashboard');
+const Webcam = require('@uppy/webcam');
+const Instagram = require('@uppy/instagram');
+const Dropbox = require('@uppy/dropbox');
+const GoogleDrive = require('@uppy/google-drive');
+const Url = require('@uppy/url');
+
 require('@uppy/core/dist/style.css');
 require('@uppy/dashboard/dist/style.css');
+require('@uppy/webcam/dist/style.css');
+require('@uppy/url/dist/style.css');
 
 export default {
   name: 'MyLayout',
@@ -51,6 +62,14 @@ export default {
       uppy: '',
       results: {}
     };
+  },
+  methods: {
+    openUppyModal: function (event) {
+      this.uppy.getPlugin('Dashboard').openModal();
+    },
+    closeUppyModal: function (event) {
+      this.uppy.getPlugin('Dashboard').closeModal();
+    }
   },
   mounted: function mounted() {
     axios.defaults.headers.common = {
@@ -67,12 +86,14 @@ export default {
         maxFileSize: 20971520,
         maxNumberOfFiles: 20,
         minNumberOfFiles: 1,
-        allowedFileTypes: ['.mov', '.MOV', '.mp4', '.MP4', '.webm', '.WEBM'],
+        allowedFileTypes: ['.mov', '.MOV', '.mp4', '.MP4', '.webm', '.WEBM', '.mkv', '.MKV'],
       },
     })
       .use(Dashboard, {
-        inline: true,
-        target: this.$refs['select-files'],
+        // inline: true,
+        // target: this.$refs['select-files'],
+        disablePageScrollWhenModalOpen: false,
+        closeModalOnClickOutside: true,
         metaFields: [
           { id: 'title', name: 'Title', placeholder: 'Video Title' },
           { id: 'license', name: 'License', placeholder: 'specify license' },
@@ -80,6 +101,11 @@ export default {
         ],
         note: 'Maximum size for this demo is 20MB. Please Edit the description of each video before uploading',
       })
+      .use(Webcam, { target: Dashboard })
+      .use(Instagram, { target: Dashboard, serverUrl: 'https://api2.transloadit.com/companion', serverPattern: /\.transloadit\.com$/ })
+      .use(GoogleDrive, { target: Dashboard, serverUrl: 'https://api2.transloadit.com/companion', serverPattern: /\.transloadit\.com$/ })
+      .use(Dropbox, { target: Dashboard, serverUrl: 'https://api2.transloadit.com/companion', serverPattern: /\.transloadit\.com$/ })
+      .use(Url, { target: Dashboard, serverUrl: 'https://api2.transloadit.com/companion', serverPattern: /\.transloadit\.com$/ })
       .use(Transloadit, {
         params: {
           auth: {
@@ -140,7 +166,7 @@ export default {
       result.successful.forEach((element, index) => {
         this.$q.loading.show({
           message: 'Saving encoded videos to firebase',
-          messageColor: 'blue',
+          messageColor: 'black',
           spinnerColor: 'white',
         });
         axios.post(`${window.base_url}/api/save-video/${element.transloadit.assembly}`, element.meta)
@@ -154,6 +180,7 @@ export default {
               message: 'All files uploaded. videos ready. Please visit the home page',
               icon: 'report_problem',
             });
+            this.uppy.getPlugin('Dashboard').closeModal();
           }
 
         })

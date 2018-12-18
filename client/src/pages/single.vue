@@ -33,7 +33,7 @@ export default {
   mounted: function mounted() {
     this.$q.loading.show({
       message: 'Preparing all video formats for your graceful view',
-      messageColor: 'blue',
+      messageColor: 'black',
       spinnerColor: 'white',
     });
     axios.get(`${window.base_url}/api/video/${this.$route.params.id}`)
